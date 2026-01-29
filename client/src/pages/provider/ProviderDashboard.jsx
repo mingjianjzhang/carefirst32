@@ -5,19 +5,19 @@ const actions = [
   {
     title: "Complete tax onboarding",
     description: "Upload practice data for Raymond, our accountant.",
-    to: "/provider/taxes",
+    to: "/provider/app/taxes",
     icon: FileSpreadsheet,
   },
   {
     title: "Review token allocation",
     description: "Confirm equity vesting and growth projections.",
-    to: "/provider/tokens",
+    to: "/provider/app/tokens",
     icon: ArrowUpRight,
   },
   {
     title: "Submit KYC documents",
     description: "Verify license and identity in one step.",
-    to: "/provider/kyc",
+    to: "/provider/app/kyc",
     icon: ShieldCheck,
   },
 ];

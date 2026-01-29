@@ -2,10 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 import { BarChart3, FileSpreadsheet, ShieldCheck } from "lucide-react";
 
 const navItems = [
-  { label: "Dashboard", to: "/provider", icon: BarChart3 },
-  { label: "Taxes", to: "/provider/taxes", icon: FileSpreadsheet },
-  { label: "Tokens", to: "/provider/tokens", icon: BarChart3 },
-  { label: "KYC", to: "/provider/kyc", icon: ShieldCheck },
+  { label: "Dashboard", to: "/provider/app", icon: BarChart3 },
+  { label: "Taxes", to: "/provider/app/taxes", icon: FileSpreadsheet },
+  { label: "Tokens", to: "/provider/app/tokens", icon: BarChart3 },
+  { label: "KYC", to: "/provider/app/kyc", icon: ShieldCheck },
 ];
 
 const navLinkClass = ({ isActive }) =>

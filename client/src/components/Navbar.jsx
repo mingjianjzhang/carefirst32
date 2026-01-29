@@ -26,17 +26,13 @@ export default function Navbar() {
           <NavLink to="/" className={navLinkClass}>
             Home
           </NavLink>
+          <NavLink to="/first" className={navLinkClass}>
+            $FIRST Rewards
+          </NavLink>
           <NavLink to="/provider" className={navLinkClass}>
             Provider Portal
           </NavLink>
         </nav>
-        <Link
-          to="/provider"
-          className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
-        >
-          <ShieldCheck className="h-4 w-4" />
-          Provider Login
-        </Link>
       </div>
     </header>
   );

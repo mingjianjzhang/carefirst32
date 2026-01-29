@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import ProviderLayout from "./layouts/ProviderLayout.jsx";
 import Home from "./pages/Home.jsx";
+import FirstToken from "./pages/FirstToken.jsx";
+import ProviderPortal from "./pages/ProviderPortal.jsx";
 import ProviderDashboard from "./pages/provider/ProviderDashboard.jsx";
 import TaxPortal from "./pages/provider/TaxPortal.jsx";
 import TokenDashboard from "./pages/provider/TokenDashboard.jsx";
@@ -14,7 +16,9 @@ function App() {
       <main className="mx-auto w-full max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/provider" element={<ProviderLayout />}>
+          <Route path="/first" element={<FirstToken />} />
+          <Route path="/provider" element={<ProviderPortal />} />
+          <Route path="/provider/app" element={<ProviderLayout />}>
             <Route index element={<ProviderDashboard />} />
             <Route path="taxes" element={<TaxPortal />} />
             <Route path="tokens" element={<TokenDashboard />} />
