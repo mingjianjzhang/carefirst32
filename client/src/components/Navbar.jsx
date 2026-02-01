@@ -29,6 +29,18 @@ export default function Navbar() {
           <NavLink to="/first" className={navLinkClass}>
             $FIRST Rewards
           </NavLink>
+          <NavLink to="/wallet" className={navLinkClass}>
+            Patient Wallet
+          </NavLink>
+          <NavLink to="/marketplace" className={navLinkClass}>
+            Marketplace
+          </NavLink>
+          <NavLink to="/claims" className={navLinkClass}>
+            Insurance Claims
+          </NavLink>
+          <NavLink to="/icare" className={navLinkClass}>
+            iCare
+          </NavLink>
           <NavLink to="/provider" className={navLinkClass}>
             Provider Portal
           </NavLink>
