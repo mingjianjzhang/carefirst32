@@ -1,4 +1,7 @@
-import { NavLink, Outlet } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BarChart3, FileSpreadsheet, ShieldCheck } from "lucide-react";
 
 const navItems = [
@@ -8,7 +11,7 @@ const navItems = [
   { label: "KYC", to: "/provider/app/kyc", icon: ShieldCheck },
 ];
 
-const navLinkClass = ({ isActive }) =>
+const getNavClass = (isActive) =>
   [
     "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition",
     isActive
@@ -16,7 +19,11 @@ const navLinkClass = ({ isActive }) =>
       : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
   ].join(" ");
 
-export default function ProviderLayout() {
+export default function ProviderLayout({ children }) {
+  const pathname = usePathname();
+  const isActive = (href) =>
+    href === "/provider/app" ? pathname === href : pathname.startsWith(href);
+
   return (
     <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
       <aside className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -34,11 +41,16 @@ export default function ProviderLayout() {
         <nav className="space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const active = isActive(item.to);
             return (
-              <NavLink key={item.to} to={item.to} className={navLinkClass} end>
+              <Link
+                key={item.to}
+                href={item.to}
+                className={getNavClass(active)}
+              >
                 <Icon className="h-4 w-4" />
                 {item.label}
-              </NavLink>
+              </Link>
             );
           })}
         </nav>
@@ -48,7 +60,7 @@ export default function ProviderLayout() {
         </div>
       </aside>
       <section className="space-y-6">
-        <Outlet />
+        {children}
       </section>
     </div>
   );

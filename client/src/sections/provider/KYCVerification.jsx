@@ -16,7 +16,8 @@ export default function KYCVerification() {
           KYC & licensure validation
         </h1>
         <p className="mt-2 text-sm text-slate-600">
-          Upload credentials so we can confirm your identity and dental license.
+          Upload credentials so we can confirm your identity and dental
+          license.
         </p>
       </div>
 

@@ -1,17 +1,24 @@
-import { Link, NavLink } from "react-router-dom";
-import { Building2, ShieldCheck } from "lucide-react";
+"use client";
 
-const navLinkClass = ({ isActive }) =>
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Building2 } from "lucide-react";
+
+const getNavClass = (isActive) =>
   [
     "text-sm font-medium transition-colors",
     isActive ? "text-blue-600" : "text-slate-600 hover:text-slate-900",
   ].join(" ");
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isActive = (href) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2 text-slate-900">
+        <Link href="/" className="flex items-center gap-2 text-slate-900">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white">
             <Building2 className="h-5 w-5" />
           </div>
@@ -23,27 +30,30 @@ export default function Navbar() {
           </div>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
-          <NavLink to="/" className={navLinkClass}>
+          <Link href="/" className={getNavClass(isActive("/"))}>
             Home
-          </NavLink>
-          <NavLink to="/first" className={navLinkClass}>
+          </Link>
+          <Link href="/first" className={getNavClass(isActive("/first"))}>
             $FIRST Rewards
-          </NavLink>
-          <NavLink to="/wallet" className={navLinkClass}>
+          </Link>
+          <Link href="/wallet" className={getNavClass(isActive("/wallet"))}>
             Patient Wallet
-          </NavLink>
-          <NavLink to="/marketplace" className={navLinkClass}>
+          </Link>
+          <Link
+            href="/marketplace"
+            className={getNavClass(isActive("/marketplace"))}
+          >
             Marketplace
-          </NavLink>
-          <NavLink to="/claims" className={navLinkClass}>
+          </Link>
+          <Link href="/claims" className={getNavClass(isActive("/claims"))}>
             Insurance Claims
-          </NavLink>
-          <NavLink to="/icare" className={navLinkClass}>
+          </Link>
+          <Link href="/icare" className={getNavClass(isActive("/icare"))}>
             iCare
-          </NavLink>
-          <NavLink to="/provider" className={navLinkClass}>
+          </Link>
+          <Link href="/provider" className={getNavClass(isActive("/provider"))}>
             Provider Portal
-          </NavLink>
+          </Link>
         </nav>
       </div>
     </header>

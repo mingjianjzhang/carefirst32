@@ -5,7 +5,7 @@ import {
   ShieldCheck,
   Stethoscope,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const benefits = [
   {
@@ -41,9 +41,13 @@ export default function ProviderPortal() {
               Join the Network of Verified Care.
             </h1>
             <p className="text-lg text-slate-600">
-              Eliminate clinical guesswork with instant access to immutable, global patient records across all 11 specialties. Protect your practice with blockchain-verified data that validates implant authenticity and significantly reduces liability risks.            </p>
+              Eliminate clinical guesswork with instant access to immutable,
+              global patient records across all 11 specialties. Protect your
+              practice with blockchain-verified data that validates implant
+              authenticity and significantly reduces liability risks.
+            </p>
             <Link
-              to="/provider/app"
+              href="/provider/app"
               className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               Log in

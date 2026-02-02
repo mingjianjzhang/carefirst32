@@ -1,5 +1,5 @@
 import { ArrowUpRight, CircleCheck, FileSpreadsheet, ShieldCheck } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const actions = [
   {
@@ -71,7 +71,7 @@ export default function ProviderDashboard() {
             return (
               <Link
                 key={action.title}
-                to={action.to}
+                href={action.to}
                 className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-200 hover:bg-blue-50"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-blue-600 shadow-sm">

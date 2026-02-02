@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@config "../tailwind.config.cjs";
+@config "../../tailwind.config.cjs";
 
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,

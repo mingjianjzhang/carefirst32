@@ -1,5 +1,5 @@
 import { ArrowRight, ShieldCheck, Wallet } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const highlights = [
   {
@@ -39,7 +39,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              to="/provider"
+              href="/provider"
               className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
             >
               Enter Provider Portal

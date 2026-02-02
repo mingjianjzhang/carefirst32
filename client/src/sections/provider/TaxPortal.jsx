@@ -89,9 +89,7 @@ export default function TaxPortal() {
           </div>
           <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-6 text-sm text-emerald-700">
             <p className="font-semibold">Raymond is standing by</p>
-            <p className="mt-1">
-              Expected review within 24 business hours.
-            </p>
+            <p className="mt-1">Expected review within 24 business hours.</p>
           </div>
         </aside>
       </div>
