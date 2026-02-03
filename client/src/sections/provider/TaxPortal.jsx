@@ -1,24 +1,27 @@
-import { FileUp, Lock } from "lucide-react";
+import { FileSpreadsheet, Lock } from "lucide-react";
+import UploadDropzone from "@/components/UploadDropzone";
 
 export default function TaxPortal() {
   return (
     <div className="space-y-6">
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-          The Hook
-        </p>
-        <h1 className="mt-3 text-2xl font-semibold text-slate-900">
-          Tax onboarding for Raymond
-        </h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Share your practice financials securely so Raymond can prepare your
-          filings.
+        <div className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+            <FileSpreadsheet className="h-5 w-5" />
+          </div>
+          <h1 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+            Reclaim Your Practice Capital
+          </h1>
+        </div>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+          Securely submit your tax documents for a confidential review to start
+          earning back what you paid in taxes.
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+      <div className="grid gap-6">
         <form className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
             <label className="text-sm font-medium text-slate-700">
               Practice name
               <input
@@ -53,45 +56,20 @@ export default function TaxPortal() {
             </label>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center">
-            <FileUp className="mx-auto h-8 w-8 text-blue-600" />
-            <p className="mt-3 text-sm font-semibold text-slate-900">
-              Upload previous tax returns
-            </p>
-            <p className="mt-1 text-xs text-slate-500">
-              Drag and drop files or click to browse. PDF, XLS, or CSV.
-            </p>
+          <div className="mt-6">
+            <UploadDropzone />
+          </div>
+
+          <div className="mt-6 flex justify-center">
             <button
               type="button"
-              className="mt-4 inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md active:translate-y-0"
             >
-              Choose files
+              <Lock className="h-4 w-4" />
+              Calculate My Savings
             </button>
           </div>
-
-          <button
-            type="button"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
-          >
-            <Lock className="h-4 w-4" />
-            Submit to Raymond
-          </button>
         </form>
-
-        <aside className="space-y-4">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-slate-900">
-              Secure upload
-            </p>
-            <p className="mt-2 text-sm text-slate-600">
-              Files are encrypted and shared only with your assigned accountant.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-6 text-sm text-emerald-700">
-            <p className="font-semibold">Raymond is standing by</p>
-            <p className="mt-1">Expected review within 24 business hours.</p>
-          </div>
-        </aside>
       </div>
     </div>
   );

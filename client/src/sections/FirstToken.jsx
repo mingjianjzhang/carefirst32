@@ -38,7 +38,7 @@ const patientSteps = [
 const providerSteps = [
   {
     title: "Tax mitigation",
-    description: "Work with Raymond to optimize practice deductions.",
+    description: "Complete a confidential review to optimize deductions.",
     icon: FileText,
   },
   {
@@ -244,7 +244,7 @@ export default function FirstToken() {
                       Step 1
                     </p>
                     <p className="mt-2 text-sm font-semibold text-slate-900">
-                      Tax mitigation with Raymond
+                      Confidential tax mitigation review
                     </p>
                   </div>
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">

@@ -1,11 +1,8 @@
-import {
-  ArrowRight,
-  BadgeCheck,
-  Globe,
-  ShieldCheck,
-  Stethoscope,
-} from "lucide-react";
-import Link from "next/link";
+"use client";
+
+import { ArrowRight, BadgeCheck, Globe, ShieldCheck, Stethoscope } from "lucide-react";
+import ProviderAuthModal from "@/components/ProviderAuthModal";
+import { useState } from "react";
 
 const benefits = [
   {
@@ -29,8 +26,12 @@ const benefits = [
 ];
 
 export default function ProviderPortal() {
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState("signup");
+
   return (
-    <div className="space-y-12">
+    <>
+      <div className="space-y-12">
       <section className="rounded-3xl border border-slate-200 bg-white px-8 py-14 shadow-sm">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
@@ -46,13 +47,29 @@ export default function ProviderPortal() {
               practice with blockchain-verified data that validates implant
               authenticity and significantly reduces liability risks.
             </p>
-            <Link
-              href="/provider/app"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-            >
-              Log in
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthOpen(true);
+                  setAuthMode("signup");
+                }}
+                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              >
+                Sign Up
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setAuthOpen(true);
+                  setAuthMode("login");
+                }}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
+              >
+                Log in
+              </button>
+            </div>
           </div>
           <div className="relative">
             <div className="absolute -left-6 top-6 h-32 w-32 rounded-full bg-blue-200/40 blur-2xl" />
@@ -166,6 +183,12 @@ export default function ProviderPortal() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      <ProviderAuthModal
+        open={authOpen}
+        onOpenChange={setAuthOpen}
+        initialMode={authMode}
+      />
+    </>
   );
 }

@@ -13,7 +13,7 @@ const navItems = [
 
 const getNavClass = (isActive) =>
   [
-    "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition",
+    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium leading-tight transition",
     isActive
       ? "bg-blue-50 text-blue-700"
       : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
@@ -25,20 +25,20 @@ export default function ProviderLayout({ children }) {
     href === "/provider/app" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-      <aside className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="mb-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+    <div className="grid gap-6 lg:grid-cols-[220px_1fr]">
+      <aside className="rounded-xl border border-slate-200 bg-white px-4 py-5 shadow-sm">
+        <div className="mb-5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
             Provider Portal
           </p>
-          <h2 className="mt-2 text-lg font-semibold text-slate-900">
+          <h2 className="mt-2 text-base font-semibold text-slate-900">
             CareFirst Dental
           </h2>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-xs text-slate-500">
             Secure onboarding and ownership dashboard.
           </p>
         </div>
-        <nav className="space-y-2">
+        <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.to);
@@ -54,12 +54,12 @@ export default function ProviderLayout({ children }) {
             );
           })}
         </nav>
-        <div className="mt-8 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-700">
+        <div className="mt-6 rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs text-emerald-700">
           <p className="font-semibold">Status</p>
           <p className="mt-1">Onboarding in progress</p>
         </div>
       </aside>
-      <section className="space-y-6">
+      <section className="space-y-6 px-6 pb-16 pt-8">
         {children}
       </section>
     </div>

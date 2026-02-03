@@ -42,6 +42,9 @@ const stats = [
 export default function TokenDashboard() {
   return (
     <div className="space-y-6">
+      <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3 text-sm font-semibold text-amber-700">
+        Demo notice: All token allocation data shown on this page is mocked.
+      </div>
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
           The Lock

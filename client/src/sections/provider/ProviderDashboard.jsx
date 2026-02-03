@@ -1,10 +1,15 @@
+"use client";
+
 import { ArrowUpRight, CircleCheck, FileSpreadsheet, ShieldCheck } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 const actions = [
   {
     title: "Complete tax onboarding",
-    description: "Upload practice data for Raymond, our accountant.",
+    description: "Upload practice data for confidential review.",
     to: "/provider/app/taxes",
     icon: FileSpreadsheet,
   },
@@ -22,40 +27,46 @@ const actions = [
   },
 ];
 
-const statusItems = [
-  { label: "Tax onboarding", status: "In progress", tone: "text-blue-600" },
-  { label: "Token allocation", status: "Ready", tone: "text-emerald-600" },
-  { label: "KYC verification", status: "Pending", tone: "text-amber-600" },
-];
-
 export default function ProviderDashboard() {
+  const router = useRouter();
+  const supabase = createClient();
+  const [displayName, setDisplayName] = useState(null);
+
+  useEffect(() => {
+    const loadName = async () => {
+      const { data } = await supabase.auth.getUser();
+      const meta = data?.user?.user_metadata || {};
+      const firstName = meta.first_name || "";
+      const lastName = meta.last_name || "";
+      const fallback = data?.user?.email?.split("@")[0] || "Provider";
+      const fullName = `${firstName} ${lastName}`.trim();
+      setDisplayName(fullName || fallback);
+    };
+    loadName();
+  }, [supabase]);
+
+  if (!displayName) {
+    return null;
+  }
+
   return (
     <div className="space-y-6">
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
-          Provider Dashboard
-        </p>
-        <h1 className="mt-3 text-2xl font-semibold text-slate-900">
-          Welcome, Dr. Rivers
-        </h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Track onboarding progress, review your token allocation, and verify
-          your credentials.
-        </p>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-3">
-        {statusItems.map((item) => (
-          <div
-            key={item.label}
-            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-          >
-            <p className="text-sm text-slate-500">{item.label}</p>
-            <p className={`mt-3 text-xl font-semibold ${item.tone}`}>
-              {item.status}
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+              Provider Dashboard
+            </p>
+            <h1 className="mt-3 text-2xl font-semibold text-slate-900">
+              Welcome, {displayName || "—"}
+            </h1>
+            <p className="mt-2 text-sm text-slate-600">
+              Track onboarding progress, review your token allocation, and
+              verify your credentials.
             </p>
           </div>
-        ))}
+          <div />
+        </div>
       </div>
 
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
