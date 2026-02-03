@@ -18,23 +18,26 @@ export default function ProviderTopBar() {
 
   return (
     <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/provider/app" className="flex items-center gap-2 text-slate-900">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white">
+      <div className="flex w-full items-center justify-between px-0 py-3">
+        <Link
+          href="/provider/app"
+          className="flex items-center gap-2 pl-4 text-slate-900"
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
             <Building2 className="h-5 w-5" />
           </div>
-          <div>
+          <div className="hidden sm:block">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
               CareFirst
             </p>
             <p className="text-base font-semibold">Provider Dashboard</p>
           </div>
         </Link>
-        <div className="relative" tabIndex={0} onBlur={() => setMenuOpen(false)}>
+        <div className="relative pr-4" tabIndex={0} onBlur={() => setMenuOpen(false)}>
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm"
           >
             <User className="h-4 w-4" />
           </button>

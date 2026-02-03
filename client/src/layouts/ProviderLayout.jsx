@@ -25,8 +25,8 @@ export default function ProviderLayout({ children }) {
     href === "/provider/app" ? pathname === href : pathname.startsWith(href);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[220px_1fr]">
-      <aside className="rounded-xl border border-slate-200 bg-white px-4 py-5 shadow-sm">
+    <div className="grid min-h-[calc(100vh-56px)] gap-6 lg:grid-cols-[220px_1fr]">
+      <aside className="min-h-full rounded-xl border border-slate-200 bg-white px-4 py-5 shadow-sm">
         <div className="mb-5">
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-slate-400">
             Provider Portal
