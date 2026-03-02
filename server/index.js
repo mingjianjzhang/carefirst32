@@ -94,6 +94,10 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
+app.get("/ping", (_req, res) => {
+  res.json({ status: "ok", message: "pong" });
+});
+
 app.post("/api/uploads/presign", authMiddleware, async (req, res) => {
   const { filename, contentType } = req.body;
   if (!filename || !contentType) {
