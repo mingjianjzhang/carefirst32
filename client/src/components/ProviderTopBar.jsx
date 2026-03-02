@@ -13,7 +13,7 @@ export default function ProviderTopBar() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push("/provider");
+    router.push("/");
   };
 
   return (
@@ -33,7 +33,16 @@ export default function ProviderTopBar() {
             <p className="text-base font-semibold">Provider Dashboard</p>
           </div>
         </Link>
-        <div className="relative pr-4" tabIndex={0} onBlur={() => setMenuOpen(false)}>
+        <div
+          className="relative pr-4"
+          tabIndex={0}
+          onBlur={(event) => {
+            if (event.currentTarget.contains(event.relatedTarget)) {
+              return;
+            }
+            setMenuOpen(false);
+          }}
+        >
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}

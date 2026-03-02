@@ -1,9 +1,9 @@
 "use client";
 
 import { ArrowUpRight, CircleCheck, FileSpreadsheet, ShieldCheck } from "lucide-react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 const actions = [
@@ -28,7 +28,7 @@ const actions = [
 ];
 
 export default function ProviderDashboard() {
-  const router = useRouter();
+  const pathname = usePathname();
   const supabase = createClient();
   const [displayName, setDisplayName] = useState(null);
 
@@ -40,10 +40,11 @@ export default function ProviderDashboard() {
       const lastName = meta.last_name || "";
       const fallback = data?.user?.email?.split("@")[0] || "Provider";
       const fullName = `${firstName} ${lastName}`.trim();
-      setDisplayName(fullName || fallback);
+      const resolvedName = fullName || fallback;
+      setDisplayName(resolvedName);
     };
     loadName();
-  }, [supabase]);
+  }, [supabase, pathname]);
 
   if (!displayName) {
     return null;
@@ -65,7 +66,6 @@ export default function ProviderDashboard() {
               verify your credentials.
             </p>
           </div>
-          <div />
         </div>
       </div>
 

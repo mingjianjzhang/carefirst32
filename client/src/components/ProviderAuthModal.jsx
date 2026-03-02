@@ -28,6 +28,37 @@ export default function ProviderAuthModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const routeAfterAuth = async (userId) => {
+    let resolvedUserId = userId;
+    if (!resolvedUserId) {
+      const { data: authData } = await supabase.auth.getUser();
+      resolvedUserId = authData?.user?.id || null;
+    }
+
+    if (!resolvedUserId) {
+      router.push("/provider/app");
+      return;
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("role")
+      .eq("id", resolvedUserId)
+      .maybeSingle();
+
+    if (profileError) {
+      setFormError("Unable to load profile. Please try again.");
+      router.push("/provider/app");
+      return;
+    }
+
+    if (profile?.role === "Financial_Admin") {
+      router.push("/admin/review");
+    } else {
+      router.push("/provider/app");
+    }
+  };
+
   const handleSignUp = async () => {
     setLoading(true);
     setFormError("");
@@ -72,14 +103,14 @@ export default function ProviderAuthModal({
     }
 
     onOpenChange(false);
-    router.push("/provider/app");
+    await routeAfterAuth(data?.user?.id);
     setLoading(false);
   };
 
   const handleLogin = async () => {
     setLoading(true);
     setFormError("");
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -91,7 +122,7 @@ export default function ProviderAuthModal({
     }
 
     onOpenChange(false);
-    router.push("/provider/app");
+    await routeAfterAuth(data?.user?.id);
     setLoading(false);
   };
 
